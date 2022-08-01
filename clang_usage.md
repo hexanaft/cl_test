@@ -36,13 +36,13 @@ touch /run/openrc/softlevel
  
 
 
-создать
-/etc/profile.d/set_clang_path.sh >
-и поместить туда
-export PATH=$HOME/.llvm/bin:$PATH
+создать  
+/etc/profile.d/set_clang_path.sh >  
+и поместить туда  
+export PATH=$HOME/.llvm/bin:$PATH  
 
-сделать еще раз 
-source /etc/profile
+сделать еще раз  
+source /etc/profile  
 
 проверить
 echo $PATH
