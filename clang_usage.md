@@ -1,37 +1,37 @@
 
 # Начало!
-Устанавливаем WSL
-Качаем alpine-minirootfs
-https://alpinelinux.org/downloads/
-https://dl-cdn.alpinelinux.org/alpine/v3.16/releases/x86_64/alpine-minirootfs-3.16.1-x86_64.tar.gz
-Добавляем дистрибутив в wsl:
-wsl --import MyCustomDistro C:\Directory\For\Custom\WSL .\alpine.tar.gz
-Запускаем
-wsl -d MyCustomDistro
+Устанавливаем WSL  
+Качаем alpine-minirootfs  
+https://alpinelinux.org/downloads/  
+https://dl-cdn.alpinelinux.org/alpine/v3.16/releases/x86_64/alpine-minirootfs-3.16.1-x86_64.tar.gz  
+Добавляем дистрибутив в wsl:  
+wsl --import MyCustomDistro C:\Directory\For\Custom\WSL .\alpine.tar.gz  
+Запускаем  
+wsl -d MyCustomDistro  
 
-Второрй способ chroot:
-sudo chroot alpine_tree16/ /bin/sh
-а внутри сделать
-source /etc/profile
+Второрй способ chroot:  
+sudo chroot alpine_tree16/ /bin/sh  
+а внутри сделать  
+source /etc/profile  
 
-apk update
-apk upgrade
+apk update  
+apk upgrade  
 
-vi /etc/resolv.conf
-'''
-nameserver 8.8.8.8
-nameserver 8.8.4.4
-'''
+vi /etc/resolv.conf  
+'''  
+nameserver 8.8.8.8  
+nameserver 8.8.4.4  
+'''  
 
-apk add g++ libc-dev clang clang-dev clang-libs clang-static lld llvm13 llvm13-static file ninja cmake zlib-dev zlib-static musl-dev compiler-rt compiler-rt-static git 
-apk add --no-cache openrc
-apk add openssh
-vi /etc/ssh/sshd_config 
->  "PermitRootLogin yes"
-rc-update add sshd
-rc-status
-service sshd restart
-touch /run/openrc/softlevel
+apk add g++ libc-dev clang clang-dev clang-libs clang-static lld llvm13 llvm13-static file ninja cmake zlib-dev zlib-static musl-dev compiler-rt compiler-rt-static git  
+apk add --no-cache openrc  
+apk add openssh  
+vi /etc/ssh/sshd_config  
+>  "PermitRootLogin yes"  
+rc-update add sshd  
+rc-status  
+service sshd restart  
+touch /run/openrc/softlevel  
  
  
 
@@ -130,11 +130,6 @@ source /etc/profile
 rm -rf ~/.local
 rm -rf ~/.llvm
 ```
-
-
-git config --list --show-origin
-git config user.name "Vitaliy Suchkov"
-git config user.email vitmeat@gmail.com
 
 
 
