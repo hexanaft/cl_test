@@ -148,6 +148,7 @@ rm -rf ~/.llvm
 
 
 
+clang -fuse-ld=lld --rtlib=compiler-rt zpipe.cc -lz -static -o zpipe
 
 
 
