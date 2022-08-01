@@ -19,11 +19,8 @@ apk upgrade
 
 vi /etc/resolv.conf
 '''
-#nameserver 8.8.8.8
-#nameserver 8.8.4.4
-nameserver 172.18.240.240
-nameserver 172.16.240.240
-nameserver fec0:0:0:ffff::1
+nameserver 8.8.8.8
+nameserver 8.8.4.4
 '''
 
 apk add g++ libc-dev clang clang-dev clang-libs clang-static lld llvm13 llvm13-static file ninja cmake zlib-dev zlib-static musl-dev compiler-rt compiler-rt-static git 
@@ -134,6 +131,10 @@ rm -rf ~/.local
 rm -rf ~/.llvm
 ```
 
+
+git config --list --show-origin
+git config user.name "Vitaliy Suchkov"
+git config user.email vitmeat@gmail.com
 
 
 
