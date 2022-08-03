@@ -17,11 +17,13 @@ ln -sv /usr/bin/llvm-strip ~/.llvm/bin/strip
 mkdir ~/.local
 mkdir ~/.local/bin
 
+echo HOME = $HOME
+
 echo ~/.local/bin/x86_64-alpine-linux-musl-clang
 cat << EOF > ~/.local/bin/x86_64-alpine-linux-musl-clang
 #!/usr/bin/env sh
 exec /usr/bin/clang \
--B\$HOME/.llvm/bin \
+-B$HOME/.llvm/bin \
 --target=x86_64-alpine-linux-musl \
 -I/usr/include/ \
 -I/usr/include/c++/11.2.1/ \
@@ -35,7 +37,7 @@ echo ~/.local/bin/x86_64-alpine-linux-musl-clang++
 cat << EOF > ~/.local/bin/x86_64-alpine-linux-musl-clang++
 #!/usr/bin/env sh
 exec /usr/bin/clang++ \
--B\$HOME/.llvm/bin \
+-B$HOME/.llvm/bin \
 -stdlib=libstdc++ \
 --target=x86_64-alpine-linux-musl \
 -I/usr/include/ \
@@ -46,16 +48,20 @@ exec /usr/bin/clang++ \
 EOF
 chmod +x ~/.local/bin/x86_64-alpine-linux-musl-clang++
 
+SYSROOTFS=$HOME/sysroot-k2h
+
 echo ~/.local/bin/arm-linux-gnueabihf-clang
 cat << EOF > ~/.local/bin/arm-linux-gnueabihf-clang
 #!/usr/bin/env sh
 exec /usr/bin/clang \
--B\$HOME/.llvm/bin \
+-B$HOME/.llvm/bin \
 --target=arm-linux-gnueabihf \
---sysroot=$HOME/sysroot-k2h \
--I$HOME/sysroot-k2h/usr/include/c++/6.2.1/ \
--I$HOME/sysroot-k2h/usr/include/c++/6.2.1/arm-linux-gnueabihf/ \
+--sysroot=$SYSROOTFS \
+-I$SYSROOTFS/usr/include/c++/6.2.1/ \
+-I$SYSROOTFS/usr/include/c++/6.2.1/arm-linux-gnueabihf/ \
 -fuse-ld=lld \
+-L$SYSROOTFS/lib/ \
+-L$SYSROOTFS/usr/lib/ \
 "\$@"
 EOF
 chmod +x ~/.local/bin/arm-linux-gnueabihf-clang
@@ -63,13 +69,15 @@ chmod +x ~/.local/bin/arm-linux-gnueabihf-clang
 echo ~/.local/bin/arm-linux-gnueabihf-clang++
 cat << EOF > ~/.local/bin/arm-linux-gnueabihf-clang++
 #!/usr/bin/env sh
-exec /usr/bin/clang \
--B\$HOME/.llvm/bin \
+exec /usr/bin/clang++ \
+-B$HOME/.llvm/bin \
 --target=arm-linux-gnueabihf \
---sysroot=$HOME/sysroot-k2h \
--I$HOME/sysroot-k2h/usr/include/c++/6.2.1/ \
--I$HOME/sysroot-k2h/usr/include/c++/6.2.1/arm-linux-gnueabihf/ \
+--sysroot=$SYSROOTFS \
+-I$SYSROOTFS/usr/include/c++/6.2.1/ \
+-I$SYSROOTFS/usr/include/c++/6.2.1/arm-linux-gnueabihf/ \
 -fuse-ld=lld \
+-L$SYSROOTFS/lib/ \
+-L$SYSROOTFS/usr/lib/ \
 "\$@"
 EOF
 chmod +x ~/.local/bin/arm-linux-gnueabihf-clang++
