@@ -14,6 +14,8 @@ function download_alpine() {
   wget http://dl-cdn.alpinelinux.org/alpine/v${ALPINE_VER}/releases/${ALPINE_TYPE}/alpine-minirootfs-${ALPINE_VERSION}-${ALPINE_TYPE}.tar.gz
 }
 
+# http://dl-cdn.alpinelinux.org/alpine/v3.16/releases/armhf/alpine-minirootfs-3.16.1-armhf.tar.gz
+
 # qemu-img create -f raw sd.img 512M
 
 # sudo losetup /dev/loop0 sd.img 
