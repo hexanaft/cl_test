@@ -38,3 +38,4 @@ outarm/
 llvm-src-*
 am16/
 *.tar.gz
+*.zip
