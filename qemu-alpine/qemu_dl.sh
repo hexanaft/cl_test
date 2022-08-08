@@ -30,6 +30,22 @@ function clone_git_and_build_qemu_src() { # http://logan.tw/posts/2018/02/18/bui
     for i in *; do mv $i $i-static; done
 }
 
+function wget_binfmt_rls_build() {
+    # git clone https://gitlab.com/cjwatson/binfmt-support.git
+    wget https://download.savannah.nongnu.org/releases/binfmt-support/binfmt-support-2.2.2.tar.gz
+    tar -xvf binfmt-support-2.2.2.tar.gz binfmt-support-2.2.2
+    cd binfmt-support-2.2.2/
+    mkdir build
+    cd build
+    apk add libpipeline libpipeline-dev
+
+    ../configure
+    make
+    make install
+}
+
+# mount | grep binfmt_misc
+
 # function run_qemu_chroot() {
 #     qemu=$(which qemu-arm-static)
 #     cp ${qemu} ${target}/${qemu}
@@ -58,3 +74,5 @@ function clone_git_and_build_qemu_src() { # http://logan.tw/posts/2018/02/18/bui
 
 # https://wiki.alpinelinux.org/wiki/How_to_make_a_cross_architecture_chroot
 # https://github.com/jirutka/qemu-openrc
+# https://wiki.gentoo.org/wiki/Crossdev_qemu-static-user-chroot
+# https://askubuntu.com/questions/1204407/why-cant-ubuntu-18-04-chroot-into-a-qemu-environment
