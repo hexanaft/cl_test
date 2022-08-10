@@ -7,6 +7,8 @@ set -x # Print commands and their arguments as they are executed.
 QEMU_VERSION="7.1.0-rc1" #"7.0.0-7"
 QEMU_TYPE="arm" # arm aarch64 microblaze mips
 
+BINFMT_VERSION="2.2.2"
+
 function wget_bin_qemu() {
     wget https://github.com/multiarch/qemu-user-static/releases/download/v${QEMU_VERSION}/qemu-${QEMU_TYPE}-static.tar.gz
 }
@@ -30,11 +32,12 @@ function clone_git_and_build_qemu_src() { # http://logan.tw/posts/2018/02/18/bui
     for i in *; do mv $i $i-static; done
 }
 
+# https://gitlab.com/cjwatson/binfmt-support
 function wget_binfmt_rls_build() {
     # git clone https://gitlab.com/cjwatson/binfmt-support.git
-    wget https://download.savannah.nongnu.org/releases/binfmt-support/binfmt-support-2.2.2.tar.gz
-    tar -xvf binfmt-support-2.2.2.tar.gz binfmt-support-2.2.2
-    cd binfmt-support-2.2.2/
+    wget https://download.savannah.nongnu.org/releases/binfmt-support/binfmt-support-${BINFMT_VERSION}.tar.gz
+    tar -xvf binfmt-support-${BINFMT_VERSION}.tar.gz binfmt-support-${BINFMT_VERSION}
+    cd binfmt-support-${BINFMT_VERSION}/
     mkdir build
     cd build
     apk add libpipeline libpipeline-dev
