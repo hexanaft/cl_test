@@ -6,8 +6,8 @@ set -x # Print commands and their arguments as they are executed.
 
 curdir=`pwd`
 ALPINE_VER="3.16"
-ALPINE_VERSION="3.16.1"
-ALPINE_TYPE="armv7" # armv7 armhf
+ALPINE_VERSION="3.16.2"
+ALPINE_TYPE="armhf" # armv7 armhf
 
 function download_alpine() {
   wget http://dl-cdn.alpinelinux.org/alpine/v${ALPINE_VER}/releases/${ALPINE_TYPE}/alpine-uboot-${ALPINE_VERSION}-${ALPINE_TYPE}.tar.gz

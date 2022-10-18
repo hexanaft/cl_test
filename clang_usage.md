@@ -1,16 +1,34 @@
 
 # Начало!
 Устанавливаем WSL  
+Последний можно найти тут  
+https://github.com/microsoft/WSL/releases  
+
+На данный момент это  
+Microsoft.WSL_0.65.3.0_x64_ARM64.msixbundle  
+
+```  
+Add-AppxPackage Microsoft.WSL_<versionNumber>.msixbundle  
+```  
+
 Качаем alpine-minirootfs  
 https://alpinelinux.org/downloads/  
-https://dl-cdn.alpinelinux.org/alpine/v3.16/releases/x86_64/alpine-minirootfs-3.16.1-x86_64.tar.gz  
-Добавляем дистрибутив в wsl:  
-wsl --import MyCustomDistro C:\Directory\For\Custom\WSL .\alpine.tar.gz  
-Запускаем  
-wsl -d MyCustomDistro  
+https://dl-cdn.alpinelinux.org/alpine/v3.16/releases/x86_64/alpine-minirootfs-3.16.2-x86_64.tar.gz  
 
-Второрй способ chroot:  
-sudo chroot alpine_tree16/ /bin/sh  
+Для windows  
+Добавляем дистрибутив в wsl:  
+wsl --import alpine162 d:\wsl\alpine162 .\alpine-minirootfs-3.16.2-x86_64.tar.gz  
+Запускаем  
+wsl -d alpine162  
+
+Для linux  
+mkdir alpine_tree162 && cd alpine_tree162  
+wget http://dl-cdn.alpinelinux.org/alpine/v3.16/releases/x86_64/alpine-minirootfs-3.16.2-x86_64.tar.gz
+tar xzvf alpine-minirootfs-3.16.2-x86_64.tar.gz  
+chroot ~/alpine_tree162 /bin/ash  
+
+Делаем chroot внутрь на убунту:  
+sudo chroot ~/alpine_tree162 /bin/ash  
 а внутри сделать  
 source /etc/profile  
 
@@ -34,7 +52,7 @@ service sshd restart
 touch /run/openrc/softlevel  
  
  
-
+## build llvm clang
 
 создать  
 /etc/profile.d/set_clang_path.sh >  
@@ -117,7 +135,7 @@ echo $PATH
 
 ```
 
-file clear_llvm_env.sh
+file clear_llvm_env.sh  
 ```
 #!/usr/bin/env sh
 # -*- coding: utf-8 -*-
@@ -132,46 +150,5 @@ rm -rf ~/.llvm
 ```
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-clang -fuse-ld=lld --rtlib=compiler-rt zpipe.cc -lz -static -o zpipe
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+clang -fuse-ld=lld --rtlib=compiler-rt zpipe.cc -lz -static -o zpipe  
 
